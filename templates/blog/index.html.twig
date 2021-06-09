@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Accueil | {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+                        {% if app.user is null %}
+                <a href="/login" class="btn brown lighten-2" style="float: right">Ecrire un article</a>
+            {% else %}
+                <a href="{{ path('article_add') }}" class="btn brown lighten-2" style="float: right">Ecrire un article</a>
+            {% endif %}
+            {% for article in articles %}
+                <div class="col s12 m4 l3">
+                    <div class="article-card">
+                        <img src="{{ asset('uploads/' ~ article.picture) }}" class="responsive-img">
+                        <h2><a href="{{ path('article_show', {'id': article.id}) }}">{{ article.titre }}</a></h2>
+                        <span class="date">{{ article.date|date('d/m/Y') }}</span>
+                        <span class="commentaire">| Commentaires : {{ article.commentaire|length }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

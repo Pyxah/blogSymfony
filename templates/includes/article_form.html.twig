@@ -1,0 +1,34 @@
+{{ form_start(form, {'attr': {'class': 'row', 'placeholder': 'Image de l\'article'}}) }}
+<div class="input-field col s12 m12 l12">
+    {{ form_widget(form.picture) }}
+</div>
+
+<div class="input-field col s12 m6 l6">
+    {{ form_widget(form.titre, {'attr': {'placeholder': 'Titre de l\'article'}}) }}
+    {{ form_label(form.titre) }}
+    <span class="error">{{ form_errors(form.titre) }}</span>
+</div>
+
+<div class="input-field col s12 m6 l6">
+    {{ form_widget(form.slug, {'attr': {'placeholder': 'Slug'}}) }}
+    <span class="error">{{ form_errors(form.slug) }}</span>
+</div>
+
+<div class="input-field col s12 m12 l12">
+    {{ form_widget(form.contenu, {'attr': {'class': 'materialize-textarea', 'placeholder': 'Le contenu de l\'article'}}) }}
+    {{ form_label(form.contenu) }}
+</div>
+
+<div class="input-field col s12 m12 l12">
+    <p>
+        <label>
+            {{ form_widget(form.isPublished, {'attr': {'class': 'filled-in'}}) }}
+            <span>Publier</span>
+        </label>
+    </p>
+</div>
+
+<div class="input-field col s12 m12 l12">
+    <input type="submit" name="" value="Enregistrer" class="btn btn-primary">
+</div>
+{{ form_end(form) }}

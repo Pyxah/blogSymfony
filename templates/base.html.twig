@@ -1,0 +1,51 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Blog Symfony{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/app.css') }}">
+    {% endblock %}
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+        <div class="container">
+            <a href="/#" class="brand-logo">Mon blog Symfony</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/#">Accueil</a></li>
+                {% if app.user %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a href="/admin">Profil</a></li>
+                    {% elseif is_granted('ROLE_USER') %}
+                        <li><a href="/profil">Profil</a></li>
+                    {% else %}
+                        <li><a href="/login">Profil</a></li>
+                    {% endif %}
+                    <li><a href="/logout">Deconnexion</a></li>
+                {% else %}
+                    <li><a href="/login">Connexion</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% block content %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script type="text/javascript">
+        $('select').formSelect();
+    </script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,57 @@
+{# templates/blog/show.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block title %}{{ article.titre }}{% endblock %}
+
+{% block content %}
+    <article class="container">
+        <div class="row">
+            <div class="col s12 m12 l8 offset-l2">
+                <h2>{{ article.titre }}</h2>
+                <span>{{ article.date|date('d/m/Y') }}</span>
+                <p>
+                    <img src="{{ asset('uploads/' ~ article.picture) }}" class="responsive-img">
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12 l8 offset-l2">
+                <p>
+                    {{ article.contenu }}
+                </p>
+            </div>
+        </div>
+
+        <div class ="row">
+            <div class="col s12 m12 l8 offset-l2">
+                <h5>Commentaires : </h5>
+                <p>
+                    {% for commentaire in article.commentaire %}
+                        {% if article.commentaire is null %}
+                            Il n'y a pas encore de commentaire sur cet article.
+                    {% else %}
+                            {{ commentaire.user.username }} le {{ commentaire.date|date('d/m/Y') }} :
+                            </br>
+                            {{ commentaire.contenu }}
+                        {% endif %}
+                    </br>
+                    </br>
+                    {% endfor %}
+                </p>
+
+                <p>
+                    Ajouter un commentaire :
+
+                    {{ form(formCommentaire)}}
+
+                <div class="input-field col s12 m12 l12">
+                    <input type="submit" name="" value="Envoyer" class="btn btn-primary">
+                </div>
+
+                </p>
+
+            </div>
+        </div>
+    </article>
+{% endblock %}
