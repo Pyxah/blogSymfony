@@ -5,4 +5,5 @@ TODO :
 - Modification du profil avec infos persos
 - Redirection après les posts
 - Le CSS <3
+- Fix le problème avec la BDD (?)
 - Finir la TODO list
